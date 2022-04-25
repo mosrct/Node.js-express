@@ -17,7 +17,7 @@ productRouter.route("/").get((req, res) => {
   res.send("Hello Products");
 });
 
-app.use("/about", productRouter);
+app.use("/products", productRouter);
 
 app.get("/", (req, res) => {
   res.render("index", {
