@@ -1,30 +1,19 @@
-const express = require("express");
-const chalk = require("chalk");
-const debug = require("debug")("app");
-const morgan = require("morgan");
-const path = require("path");
+const express = require('express');
+const chalk = require('chalk')
+const debug = require('debug')('app');
+const morgan = require('morgan');
+
 const app = express();
-const PORT = process.env.PORT;
-const productRouter = express.Router();
+const port = 3000;
 
-app.use(morgan("combined"));
-app.use(express.static(path.join(__dirname, "/public/")));
+app.use(morgan('combined'))
 
-app.set("views", "./src/views");
-app.set("view engine", "ejs");
+app.get("/", (req,res) =>{
 
-productRouter.route("/").get((req, res) => {
-  res.send("Hello Products");
-});
+    res.send('Hello Bass');
 
-app.use("/products", productRouter);
+})
 
-app.get("/", (req, res) => {
-  res.render("index", {
-    username: "Rutchata.H",
-    customers: ["Mos", "Joy", "Bass"],
-  });
-});
-app.listen(PORT, () => {
-  debug("Listening on PORT " + chalk.green(PORT));
-});
+app.listen(port, ()=>{
+    debug("Listening on port" + chalk.green (" : "+port));
+})
